@@ -1,0 +1,5 @@
+# Treat .pq files as Power Query
+*.pq linguist-language=PowerQuery
+
+# Ensure .sql is counted as SQL
+*.sql linguist-language=SQL
