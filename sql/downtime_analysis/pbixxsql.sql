@@ -1,3 +1,5 @@
+-- DOWNTIME ANALYSIS --
+
 CREATE DATABASE	manufacturing_db;  -- creates the database
 USE manufacturing_db;
 
@@ -13,7 +15,7 @@ CREATE TABLE line_downtime (   --  sample how to create a table
     Value INT
 );
 
-LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/dbManufacturing/line_downtime.csv'   -- sample how to load the file
+LOAD DATA INFILE '<your_path>' -- sample how to load the file (USED DUMMY PATH)
 	INTO TABLE line_downtime
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"'
@@ -32,7 +34,7 @@ CREATE TABLE line_productivity_staging (
 );
 
 
-LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/dbManufacturing/line_productivity.csv'   -- sample how to load and do staging to handle inconsistent data(e.g date/time)
+LOAD DATA INFILE '<your_path>'  -- sample how to load and do staging to handle inconsistent data(e.g date/time) (USED DUMMY PATH)
 	INTO TABLE line_productivity_staging
     FIELDS TERMINATED BY ','
     ENCLOSED BY '"'
