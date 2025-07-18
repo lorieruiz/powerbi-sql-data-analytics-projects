@@ -1,8 +1,12 @@
-// =====================  
+# M Scripts – Power BI - Power Query
 
-// THIS SUMMARIZES DIFFERENT POWER QUERY SCRIPTS - (M)  
+A collection of Power Query(M-Scripts) used for data querying, extraction, and modeling in various Power BI projects.
 
-// Note: points to specific files
+---
 
-DOWNTIME ANALYSIS  
-[M-Scripts](./downtime_analysis/)
+📌 **Disclaimer**  
+This folder contains Power-Query(M-Scripts) tailored for personal demo projects. 
+
+---
+
+📁 [Go to Downtime Analysis M-Scripts](./downtime_analysis/)
