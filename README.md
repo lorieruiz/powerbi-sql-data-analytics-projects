@@ -14,6 +14,6 @@ Each project simulates challenges—designed to showcase data modeling, transfor
 🛠 **Tools**  
 📊 Power BI (DAX, Visualizations, Data Modeling)  
 🧮 MySQL / SQL for Data Querying & Extraction
-[SQL-Scripts](./sql/)
+[SQL-Scripts](./sql/)  
 🌀 Power Query (M) for Data Cleaning and Transformation
 [M-Scripts](./powerquery.mscripts/)
