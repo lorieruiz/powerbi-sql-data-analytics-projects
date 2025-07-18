@@ -3,8 +3,9 @@ let
     // Source Configuration
     // ===============================
     // Connect to local MySQL database and access the 'downtime_factor' table
-    Server = <your server>,
-    Database = <your database>,
+    // Note: This example uses LOCAL HOST and DUMMY database NAMES for DEMO purposes only.
+    Server = <your_server>,
+    Database = <your_database>,
     Source = MySQL.Database(Server, Database, [ReturnSingleDatabase=true]),
     RawTable = Source{[Schema="manufacturing_db", Item="downtime_factor"]}[Data],
 

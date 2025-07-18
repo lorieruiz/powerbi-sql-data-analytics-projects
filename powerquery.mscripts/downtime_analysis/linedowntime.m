@@ -1,46 +1,20 @@
 let
-    // ===============================
-    // Source Configuration
-    // ===============================
-    // Connect to local MySQL database and access the 'downtime_factor' table
-    Server = <your server>,
-    Database = <your database>,
+    // ============================
+    // Fetching data from MySQL to access "line_downtime" table
+    // Note: This example uses LOCAL HOST and DUMMY database NAMES for DEMO purposes only.
+    Server = <your_server>,
+    Database = <your_database>,
     Source = MySQL.Database(Server, Database, [ReturnSingleDatabase=true]),
-    RawTable = Source{[Schema="manufacturing_db", Item="downtime_factor"]}[Data],
-
-    // ===============================
-    // Data Type Formatting
-    // ===============================
-    // Ensure correct data types for key columns
-    TypedTable = Table.TransformColumnTypes(
-        RawTable,
-        {
-            {"Factor", Int64.Type},
-            {"Description", type text},
-            {"Operator Error", type text}
+    manufacturing_db_line_downtime = Source{[Schema="manufacturing_db",Item="line_downtime"]}[Data],
+    // Adjust column names
+    Fixing_ColumnNames = Table.RenameColumns
+    (
+        manufacturing_db_line_downtime,{
+            {"Attribute", "FactorID"},
+            {"Value", "Downtime(InMin)"}
         }
     ),
-
-    // ===============================
-    // Labeling Error Types
-    // ===============================
-    // Replace YES/NO in 'Operator Error' column with descriptive labels
-    WithOperatorErrorLabeled = Table.ReplaceValue(TypedTable, "Yes", "Operator Error", Replacer.ReplaceText, {"Operator Error"}),
-    WithMachineErrorLabeled = Table.ReplaceValue(WithOperatorErrorLabeled, "No", "Machine Error", Replacer.ReplaceText, {"Operator Error"}),
-
-    // ===============================
-    // Shortening description column to create dashboard-friendly label
-    WithShortDescColumn = Table.DuplicateColumn(WithMachineErrorLabeled, "Description", "ShortDesc"),
-
-    // Apply shortening replacements on common lengthy descriptions
-    Shortened_MachineAdjust = Table.ReplaceValue(WithShortDescColumn, "Machine adjustment", "Machine adjust", Replacer.ReplaceText, {"ShortDesc"}),
-    Shortened_InventoryShortage = Table.ReplaceValue(Shortened_MachineAdjust, "Inventory shortage", "Short inventory", Replacer.ReplaceText, {"ShortDesc"}),
-    Shortened_BatchCodingError = Table.ReplaceValue(Shortened_InventoryShortage, "Batch coding error", "Coding error", Replacer.ReplaceText, {"ShortDesc"}),
-    Shortened_CalibrationError = Table.ReplaceValue(Shortened_BatchCodingError, "Calibration error", "Calibrate error", Replacer.ReplaceText, {"ShortDesc"}),
-    Shortened_BeltJam = Table.ReplaceValue(Shortened_CalibrationError, "Conveyor belt jam", "Belt jam", Replacer.ReplaceText, {"ShortDesc"})
-
+    // Finalized data type for final table
+    Final = Table.TransformColumnTypes(Fixing_ColumnNames, {{"Batch", Text.Type}})
 in
-    // ===============================
-    // Output Cleaned Table
-    // ===============================
-    Shortened_BeltJam
+    Final
