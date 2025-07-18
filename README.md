@@ -15,3 +15,4 @@ Each project simulates challenges—designed to showcase data modeling, transfor
 📊 Power BI (DAX, Visualizations, Data Modeling)  
 🧮 MySQL / SQL for Data Querying & Extraction  
 🌀 Power Query (M) for Data Cleaning and Transformation
+[downtime_factor.m – Power Query Script](./powerbi-sql-data-analytics-projects/downtime_factor.m)
