@@ -5,4 +5,4 @@
 // Note: points to specific files
 
 DOWNTIME ANALYSIS  
-[M-Scripts](./powerquery.mscripts/downtime_analysis/)
+[M-Scripts](./downtime_analysis/)
